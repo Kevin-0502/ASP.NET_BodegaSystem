@@ -1,0 +1,88 @@
+﻿@model IEnumerable<BodegaSystem.Models.Producto>
+
+@{
+    ViewData["Title"] = "Productos";
+}
+
+<h1>Listado de Productos</h1>
+
+<p>
+    <a asp-action="Create" class="btn btn-primary btn-sm">Agregar nuevo producto</a>
+</p>
+<form asp-controller="Productoes" asp-action="Index" class="form-inline">
+    <div class="form-group mb-2 mr-2">
+        <label for="product_name" class="sr-only">Nombre: </label>
+        <input type="text"
+               name="product_name"
+               id="product_name"
+               value="@Context.Request.Query["product_name"]"
+               placeholder="Nombre de producto a buscar"
+               class="form-control form-control-sm" />
+        
+    </div>
+    <div class="form-group mb-2 mr-2">
+        <label for="category_name" class="sr-only">Categoría:  </label>
+        <input type="text"
+               name="category_name"
+               id="category_name"
+               value="@Context.Request.Query["category_name"]"
+               placeholder="Categoria de producto a buscar"
+               class="form-control form-control-sm" />
+       
+    </div>
+    <button type="submit" class="btn btn-secondary btn-sm mb-2">Buscar</button>
+</form>
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.Nombre)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Descripcion)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Categoria)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Proveedor)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Precio)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Existencia)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.Nombre)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Descripcion)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Categoria.Nombre)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Proveedor.CorreoElectronico)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Precio)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Existencia)
+            </td>
+            <td>
+                <a asp-action="Edit" asp-route-id="@item.Id">Editar producto</a> |
+                <a asp-action="Details" asp-route-id="@item.Id">Detalles de producto</a> |
+                <a asp-action="Delete" asp-route-id="@item.Id">Borrar producto</a>
+            </td>
+        </tr>
+}
+    </tbody>
+</table>

@@ -1,0 +1,161 @@
+﻿@{
+    ViewData["Title"] = "Bienvenido - Sistema de Bodega";
+    var totalProductos = ViewBag.TotalProductos ?? 0;
+    var totalCategorias = ViewBag.TotalCategorias ?? 0;
+    var totalProveedores = ViewBag.TotalProveedores ?? 0;
+    var totalMovimientos = ViewBag.TotalMovimientos ?? 0;
+}
+
+<!-- Vista de bienvenida para Sistema de Bodega (El Salvador) -->
+<div class="welcome-wrapper container py-5">
+    <div class="row align-items-center g-4">
+        <!-- Hero / Encabezado -->
+        <div class="col-12 col-lg-7">
+            <div class="p-4 rounded-3 shadow-sm bg-light">
+                <h1 class="display-6 mb-2">Bienvenido al Sistema de Bodega</h1>
+                <p class="lead mb-3">
+                    Gestión de inventario — Universidad Don Bosco. Administra categorías, proveedores, productos
+                    y controla entradas y salidas de bodega de forma segura y sencilla.
+                </p>
+
+                <p class="mb-3">
+                    <span class="badge bg-success me-2">Operativo</span>
+                    <small class="text-muted">Último respaldo: <strong>Hoy</strong></small>
+                </p>
+
+                <div class="d-flex flex-wrap gap-2">
+                    <a asp-controller="Productoes" asp-action="Index" class="btn btn-primary btn-lg">
+                        Productos
+                    </a>
+                    <a asp-controller="Categorias" asp-action="Index" class="btn btn-outline-secondary btn-lg">
+                        Categorías
+                    </a>
+                    <a asp-controller="Proveedores" asp-action="Index" class="btn btn-outline-secondary btn-lg">
+                        Proveedores
+                    </a>
+                    <a asp-controller="MovimientoInventarios" asp-action="Index" class="btn btn-outline-warning btn-lg">
+                        Movimientos
+                    </a>
+                </div>
+            </div>
+        </div>
+
+        <!-- Tarjetas de resumen rápido -->
+        <div class="col-12 col-lg-5">
+            <div class="row g-3">
+                <div class="col-6">
+                    <div class="card text-center shadow-sm h-100">
+                        <div class="card-body">
+                            <h6 class="card-subtitle mb-2 text-muted">Productos</h6>
+                            <h3 class="card-title mb-0">@totalProductos</h3>
+                            <small class="text-muted">Items registrados</small>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-6">
+                    <div class="card text-center shadow-sm h-100">
+                        <div class="card-body">
+                            <h6 class="card-subtitle mb-2 text-muted">Categorías</h6>
+                            <h3 class="card-title mb-0">@totalCategorias</h3>
+                            <small class="text-muted">Tipos disponibles</small>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-6">
+                    <div class="card text-center shadow-sm h-100">
+                        <div class="card-body">
+                            <h6 class="card-subtitle mb-2 text-muted">Proveedores</h6>
+                            <h3 class="card-title mb-0">@totalProveedores</h3>
+                            <small class="text-muted">Contactos</small>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-6">
+                    <div class="card text-center shadow-sm h-100">
+                        <div class="card-body">
+                            <h6 class="card-subtitle mb-2 text-muted">Movimientos</h6>
+                            <h3 class="card-title mb-0">@totalMovimientos</h3>
+                            <small class="text-muted">Entradas / Salidas</small>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Sección informativa / accesos rápidos -->
+        <div class="col-12">
+            <div class="mt-4 p-3 rounded-3 border">
+                <h5 class="mb-2">Accesos rápidos</h5>
+                <div class="row g-3">
+                    <div class="col-sm-6 col-md-4">
+                        <div class="d-flex align-items-start gap-3">
+                            <div class="badge rounded-pill bg-primary fs-5 p-2">C</div>
+                            <div>
+                                <strong>Crear Categoría</strong>
+                                <div class="text-muted small">Agregar nuevos tipos de productos</div>
+                                <div class="mt-2">
+                                    <a asp-controller="Categorias" asp-action="Create" class="btn btn-sm btn-outline-primary">Crear</a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="col-sm-6 col-md-4">
+                        <div class="d-flex align-items-start gap-3">
+                            <div class="badge rounded-pill bg-success fs-5 p-2">P</div>
+                            <div>
+                                <strong>Agregar Producto</strong>
+                                <div class="text-muted small">Registrar nuevo artículo en bodega</div>
+                                <div class="mt-2">
+                                    <a asp-controller="Productoes" asp-action="Create" class="btn btn-sm btn-outline-success">Agregar</a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="col-sm-6 col-md-4">
+                        <div class="d-flex align-items-start gap-3">
+                            <div class="badge rounded-pill bg-warning fs-5 p-2">M</div>
+                            <div>
+                                <strong>Nuevo Movimiento</strong>
+                                <div class="text-muted small">Registrar entrada o salida</div>
+                                <div class="mt-2">
+                                    <a asp-controller="MovimientoInventarios" asp-action="Create" class="btn btn-sm btn-outline-warning">Registrar</a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+
+                <hr />
+
+                <p class="mb-0 small text-muted">
+                    Diseñado para pequeñas y medianas Bodegas en El Salvador.
+                </p>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Estilo opcional pequeño para ajustar apariencia (todo sigue dentro de la misma vista) -->
+<style>
+    .welcome-wrapper {
+        max-width: 1100px;
+    }
+
+        .welcome-wrapper .card {
+            border: 0;
+        }
+
+        .welcome-wrapper .badge {
+            min-width: 38px;
+            height: 38px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+</style>
